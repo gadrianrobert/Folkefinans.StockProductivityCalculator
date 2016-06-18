@@ -9,24 +9,13 @@
         public int Years { get; set; }
         public override int GetHashCode()
         {
-            unchecked
-            {
-                int result = Name?.GetHashCode() ?? 0;
-
-                //result = (result * hashNormalizer) ^ Price.GetHashCode();
-                //result = (result * hashNormalizer) ^ Quantity;
-                //result = (result * hashNormalizer) ^ Percentage.GetHashCode();
-                //result = (result * hashNormalizer) ^ Years;
-
-                return result;
-            }
+            return Name?.GetHashCode() ?? 0;
         }
 
         public override bool Equals(object obj)
         {
             var specificObject = obj as Stock;
-            if (specificObject == null) return false;
-            return string.Equals(Name, specificObject.Name);
+            return specificObject != null && string.Equals(Name, specificObject.Name);
         }
     }
 }
