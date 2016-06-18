@@ -28,11 +28,9 @@ namespace Folkefinans.StockProductivityCalculator.BusinessLogic
             }
         }
 
-        public void SaveStockProductivity(Stock stock)
+        public void SaveStockProductivity(Stock stock, IEnumerable<Productivity> productivity)
         {
             if(stock==null) return;
-
-            var productivity = CalculateProductivity(stock);
 
             _stockRepository.Add(stock, productivity);
         }

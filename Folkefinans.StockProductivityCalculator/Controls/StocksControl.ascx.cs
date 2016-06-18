@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Ninject.Web;
+using Folkefinans.StockProductivityCalculator.Models;
 
-namespace Folkefinans.StockProductivityCalculator
+namespace Folkefinans.StockProductivityCalculator.Controls
 {
-    public partial class SiteMaster : MasterPageBase
+    public partial class StocksControl : System.Web.UI.UserControl
     {
+        public IEnumerable<Stock> Stocks { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
 

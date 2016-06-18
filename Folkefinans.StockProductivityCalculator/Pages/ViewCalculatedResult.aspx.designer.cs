@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Folkefinans.StockProductivityCalculator {
+namespace Folkefinans.StockProductivityCalculator.Pages {
     
     
-    public partial class SiteMaster {
+    public partial class ViewCalculatedResult {
         
         /// <summary>
-        /// MainContent control.
+        /// StocksControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::Folkefinans.StockProductivityCalculator.Controls.StocksControl StocksControl;
     }
 }
