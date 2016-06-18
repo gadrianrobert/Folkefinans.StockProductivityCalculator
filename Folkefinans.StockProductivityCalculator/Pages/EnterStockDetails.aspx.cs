@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.ModelBinding;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Folkefinans.StockProductivityCalculator.BusinessLogic;
 using Folkefinans.StockProductivityCalculator.Models;
 using Ninject;
@@ -15,7 +10,7 @@ namespace Folkefinans.StockProductivityCalculator.Pages
     public partial class EnterStockDetails : PageBase
     {
         [Inject]
-        public IStockBusinessLogic stockBusinessLogic { get; set; }
+        public IStockBusinessLogic StockBusinessLogic { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             lblMessage.Text = String.Empty;
@@ -28,8 +23,8 @@ namespace Folkefinans.StockProductivityCalculator.Pages
 
             if (Page.IsValid && TryUpdateModel(stock))
             {
-                var productivity = new List<Productivity>(stockBusinessLogic.CalculateProductivity(stock));
-                stockBusinessLogic.SaveStockProductivity(stock, productivity);
+                var productivity = new List<Productivity>(StockBusinessLogic.CalculateProductivity(stock));
+                StockBusinessLogic.SaveStockProductivity(stock, productivity);
 
                 ProductivityControl.Productivity = productivity;
                 lblMessage.Text = "Stock productivity has been calculated.";

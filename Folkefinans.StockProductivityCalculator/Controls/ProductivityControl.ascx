@@ -19,11 +19,4 @@
         <% } %>
     </tbody>
 </table>
-<% }
-    else
-    { %>
-<%--<div class="alert alert-info">
-    <strong>Info!</strong> There is no information to display.
-</div>--%>
-
 <% } %>

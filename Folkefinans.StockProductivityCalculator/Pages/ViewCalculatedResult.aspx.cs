@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Folkefinans.StockProductivityCalculator.App_Start;
 using Folkefinans.StockProductivityCalculator.BusinessLogic;
-using Folkefinans.StockProductivityCalculator.Controls;
 using Ninject;
 using Ninject.Web;
 
@@ -17,10 +8,10 @@ namespace Folkefinans.StockProductivityCalculator.Pages
     public partial class ViewCalculatedResult : PageBase
     {
         [Inject]
-        public IStockBusinessLogic stockBusinessLogic { get; set; }
+        public IStockBusinessLogic StockBusinessLogic { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            StocksControl.Stocks = stockBusinessLogic.GetStocks();
+            StocksControl.Stocks = StockBusinessLogic.GetStocks();
         }
 
         //[Inject]

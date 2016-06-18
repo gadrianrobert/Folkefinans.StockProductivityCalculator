@@ -21,5 +21,12 @@
                 return result;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var specificObject = obj as Stock;
+            if (specificObject == null) return false;
+            return string.Equals(Name, specificObject.Name);
+        }
     }
 }

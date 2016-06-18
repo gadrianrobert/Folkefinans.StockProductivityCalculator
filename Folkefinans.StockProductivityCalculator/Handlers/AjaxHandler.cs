@@ -14,12 +14,12 @@ namespace Folkefinans.StockProductivityCalculator.Handlers
     public class AjaxHandler : HttpHandlerBase
     {
         [Inject]
-        public IStockBusinessLogic stockBusinessLogic { get; set; }
+        public IStockBusinessLogic StockBusinessLogic { get; set; }
 
 
         private const string ActionParameterName = "action";
 
-        private static Dictionary<string, Action<IStockBusinessLogic>> actionDictionary = new Dictionary<string, Action<IStockBusinessLogic>>()
+        private static readonly Dictionary<string, Action<IStockBusinessLogic>> ActionDictionary = new Dictionary<string, Action<IStockBusinessLogic>>()
         {
             { "getproductivity", GetProductivityInfo }
         };
@@ -28,25 +28,25 @@ namespace Folkefinans.StockProductivityCalculator.Handlers
         {
             var action = context.Request.QueryString[ActionParameterName];
 
-            if (actionDictionary.ContainsKey(action))
+            if (ActionDictionary.ContainsKey(action))
             {
-                actionDictionary[action](stockBusinessLogic);
+                ActionDictionary[action](StockBusinessLogic);
             }
 
         }
 
         public override bool IsReusable => false;
 
-        private static void GetProductivityInfo(IStockBusinessLogic stockBL)
+        private static void GetProductivityInfo(IStockBusinessLogic stockBusinessLogic)
         {
             var stock = HttpContext.Current.Request.QueryString["stock"];
 
             using (var page = new Page())
             {
                 var ctrl = (ProductivityControl)page.LoadControl("~/Controls/ProductivityControl.ascx");
-                var stockInfo = stockBL.GetStocks().FirstOrDefault(s => string.Equals(s.Name, stock));
+                var stockInfo = stockBusinessLogic.GetStocks().FirstOrDefault(s => string.Equals(s.Name, stock));
 
-                ctrl.Productivity = stockBL.GetStockProductivity(stockInfo);
+                ctrl.Productivity = stockBusinessLogic.GetStockProductivity(stockInfo);
                 page.Controls.Add(ctrl);
                 using (var writer = new StringWriter())
                 {

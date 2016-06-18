@@ -12,7 +12,11 @@ namespace Folkefinans.StockProductivityCalculator.Repositories
         public void Add(Stock stock, IEnumerable<Productivity> productivity)
         {
             var addValue = productivity as IList<Productivity> ?? productivity.ToList();
-            Store.AddOrUpdate(stock, addValue, (s, p) => addValue);
+
+            IEnumerable<Productivity> removed;
+            if (Store.ContainsKey(stock)) Store.TryRemove(stock, out removed);
+
+            Store.TryAdd(stock, addValue);
         }
 
         public IEnumerable<Stock> GetStocks()
