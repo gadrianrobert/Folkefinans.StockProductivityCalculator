@@ -10,6 +10,9 @@ using Elmah;
 
 namespace Folkefinans.StockProductivityCalculator
 {
+    /// <summary>
+    /// Global application module
+    /// </summary>
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)

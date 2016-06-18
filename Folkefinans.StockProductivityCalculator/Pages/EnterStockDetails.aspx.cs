@@ -7,28 +7,33 @@ using Ninject.Web;
 
 namespace Folkefinans.StockProductivityCalculator.Pages
 {
+    /// <summary>
+    /// Enter stock details page
+    /// </summary>
     public partial class EnterStockDetails : PageBase
     {
         [Inject]
         public IStockBusinessLogic StockBusinessLogic { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblMessage.Text = String.Empty;
+            lblMessage.Text = string.Empty;
         }
 
         protected void btnCalculate_Click(object sender, EventArgs e)
         {
             var stock = new Stock();
 
-
-            if (Page.IsValid && TryUpdateModel(stock))
+            if (!Page.IsValid || !TryUpdateModel(stock))
             {
-                var productivity = new List<Productivity>(StockBusinessLogic.CalculateProductivity(stock));
-                StockBusinessLogic.SaveStockProductivity(stock, productivity);
-
-                ProductivityControl.Productivity = productivity;
-                lblMessage.Text = "Stock productivity has been calculated.";
+                lblMessage.Text = "Stock productivity has not been calculated.";
+                return;
             }
+
+            var productivity = new List<Productivity>(StockBusinessLogic.CalculateProductivity(stock));
+            StockBusinessLogic.SaveStockProductivity(stock, productivity);
+
+            ProductivityControl.Productivity = productivity;
+            lblMessage.Text = "Stock productivity has been calculated.";
         }
 
         private bool TryUpdateModel(Stock stock)

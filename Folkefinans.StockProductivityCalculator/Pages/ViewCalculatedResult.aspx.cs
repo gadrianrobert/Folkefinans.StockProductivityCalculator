@@ -5,6 +5,9 @@ using Ninject.Web;
 
 namespace Folkefinans.StockProductivityCalculator.Pages
 {
+    /// <summary>
+    /// View calculated result page
+    /// </summary>
     public partial class ViewCalculatedResult : PageBase
     {
         [Inject]

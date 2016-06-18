@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace Folkefinans.StockProductivityCalculator
 {
+    /// <summary>
+    /// Default page
+    /// </summary>
     public partial class _Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)

@@ -6,6 +6,9 @@ using Ninject;
 
 namespace Folkefinans.StockProductivityCalculator.BusinessLogicTests
 {
+    /// <summary>
+    /// Stock business logic test class
+    /// </summary>
     [TestClass]
     public class StockBusinessLogicTests
     {
